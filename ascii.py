@@ -27,15 +27,11 @@ def main(image):
         width_ratio = 1
         range_y = image_height
 
-    # pprint((height_ratio, width_ratio, range_x, range_y, screen.size))
-    # exit()
-
     for y in range(range_y):
         for x in range(range_x):
             tuple_dim = (int(height_ratio * x), int(width_ratio * y),
                          int(height_ratio * x + height_ratio), int(width_ratio * y + width_ratio))
 
-            # pprint(tuple_dim);
             image_square = image.crop(tuple_dim)
 
             square_stats = ImageStat.Stat(image_square)
