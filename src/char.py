@@ -2,18 +2,11 @@ import random
 
 
 class Char:
-    TYPE_NEUTRAL = 0
-    TYPE_DARK = 1
-    TYPE_LIGHT = 2
+    GREYSCALE_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1\{\}[]?-_+~<>i!lI;:,\"^`'. "
+    MAX_LEN = len(GREYSCALE_CHARS)
 
-    CHARS = [
-        ['A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5']
-    ]
-
-    def __init__(self, type=None):
-        if type == None:
-            type = self.TYPE_NEUTRAL
-        self.type = type
+    def __init__(self, level=0):
+        self._level = level
 
     def __repr__(self):
-        return random.choice(self.CHARS[self.type])
+        return self.GREYSCALE_CHARS[self._level]
