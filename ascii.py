@@ -20,7 +20,7 @@ def main(image):
     else:
         height_ratio = 1
         range_y = image_height
-    
+
     if image_width > range_y:
         width_ratio = (image_width / range_y)
     else:
@@ -32,18 +32,21 @@ def main(image):
 
     for y in range(range_y):
         for x in range(range_x):
-            tuple_dim = (int(height_ratio * x), int(width_ratio * y), int(height_ratio * x + height_ratio), int(width_ratio * y + width_ratio))
-            
+            tuple_dim = (int(height_ratio * x), int(width_ratio * y),
+                         int(height_ratio * x + height_ratio), int(width_ratio * y + width_ratio))
+
             # pprint(tuple_dim);
             image_square = image.crop(tuple_dim)
 
             square_stats = ImageStat.Stat(image_square)
 
-            val = (square_stats.median[0] / 2) % Char.MAX_LEN
+            val = ((square_stats.mean[0] +
+                    square_stats.mean[1]) / 2) % Char.MAX_LEN
             sys.stdout.write(str(Char(int(val))))
-            
+
         if x < range_x:
             sys.stdout.write('\n')
+
 
 def get_image():
     infile = sys.argv[1]
