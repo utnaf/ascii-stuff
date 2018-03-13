@@ -16,7 +16,7 @@ python ascii.py test.jpg
 
 Where test.jpg is this one
 
-![c&h](https://github.com/utnaf/ascii-stuff/raw/master/test.png)
+![c&h](https://github.com/utnaf/ascii-stuff/raw/master/test.jpg)
 
 Should return somethin like
 
