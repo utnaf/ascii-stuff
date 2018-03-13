@@ -15,7 +15,7 @@ python ascii.py test.jpg
 ```
 
 Should return somethin like
-![result](./result.png)
+![result in terminal](https://bitbucket.org/utnaf/ascii-stuff/raw/master/result.png)
 
 ### Various
 Feel free to contribute, comment, suggest, cry, smile, or whatever you do when you see something awesome :)
