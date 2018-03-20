@@ -4,7 +4,7 @@ This is an exercise I made to lear some Python.
 
 ## Wat
 
-It takes an image and prints on terminal it's ASCII art representation.
+It takes an image and prints on terminal it's ASCII color art representation.
 
 ## How
 

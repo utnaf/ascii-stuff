@@ -35,17 +35,41 @@ def main(image):
             tuple_dim = (int(height_ratio * x), int(width_ratio * y),
                          int(height_ratio * x + height_ratio), int(width_ratio * y + width_ratio))
 
-            # pprint(tuple_dim);
             image_square = image.crop(tuple_dim)
+
+            rgb = get_medium_color(image_square)
 
             square_stats = ImageStat.Stat(image_square)
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            sys.stdout.write(str(Char(int(val))))
+            sys.stdout.write(str(Char(int(val), rgb[0])))
 
         if x < range_x:
             sys.stdout.write('\n')
+
+
+def get_medium_color(image):
+    count = 1
+    width, height = image.size
+
+    red_amount = 0
+    green_amount = 0
+    blue_amount = 0
+
+    for x in range(width):
+        for y in range(height):
+            count += 1
+            r, g, b = image.getpixel((x, y))
+            red_amount += r
+            green_amount += g
+            blue_amount += b
+
+    return rgb2short(
+        format(int(red_amount/count), '2x') + 
+        format(int(green_amount/count), '2x') +
+        format(int(blue_amount/count), '2x')
+    )
 
 
 def get_image():
@@ -54,7 +78,7 @@ def get_image():
     if infile == None:
         exit('Error')
 
-    fileobject = Image.open(infile).convert('LA')
+    fileobject = Image.open(infile).convert('RGB')
 
     return fileobject
 
