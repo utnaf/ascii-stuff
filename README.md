@@ -14,9 +14,13 @@ You need [Pillow](https://github.com/python-pillow/Pillow) to run this script, s
 python ascii.py test.jpg
 ```
 
+Where test.jpg is this one
+
+![c&h](https://github.com/utnaf/ascii-stuff/raw/master/test.jpg)
+
 Should return somethin like
 
-![result in terminal](https://bitbucket.org/utnaf/ascii-stuff/raw/master/result.png)
+![result in terminal](https://github.com/utnaf/ascii-stuff/raw/master/result.png)
 
 ### Various
 Feel free to contribute, comment, suggest, cry, smile, or whatever you do when you see something awesome :)

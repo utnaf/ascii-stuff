@@ -27,9 +27,6 @@ def main(image):
         width_ratio = 1
         range_y = image_height
 
-    # pprint((height_ratio, width_ratio, range_x, range_y, screen.size))
-    # exit()
-
     for y in range(range_y):
         for x in range(range_x):
             tuple_dim = (int(height_ratio * x), int(width_ratio * y),
