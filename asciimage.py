@@ -1,6 +1,9 @@
 import time
 import sys
 import os
+import io
+import urllib.request
+import argparse
 from src import *
 from PIL import Image
 from PIL import ImageStat
@@ -8,7 +11,7 @@ from pprint import pprint
 from math import ceil
 
 
-def main(image):
+def main(image, is_grayscale):
     count = 0
     screen = Screen()
 
@@ -40,7 +43,7 @@ def main(image):
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            sys.stdout.write(str(Char(int(val), rgb[0])))
+            sys.stdout.write(str(Char(int(val), rgb[0], is_grayscale)))
 
         if x < range_x:
             sys.stdout.write('\n')
@@ -63,25 +66,33 @@ def get_medium_color(image):
             blue_amount += b
 
     return rgb2short(
-        format(int(red_amount/count), '2x') + 
+        format(int(red_amount/count), '2x') +
         format(int(green_amount/count), '2x') +
         format(int(blue_amount/count), '2x')
     )
 
 
-def get_image():
-    infile = sys.argv[1]
-
+def get_image(file, url):
+    infile = file
     if infile == None:
-        exit('Error')
+        with urllib.request.urlopen(url) as readed_url:
+            infile = io.BytesIO(readed_url.read())
 
     fileobject = Image.open(infile).convert('RGB')
 
     return fileobject
 
 
+parser = argparse.ArgumentParser(description="Convert an image into ASCII art")
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument("-f", help="Local file path")
+group.add_argument("-u", help="Remote url")
+
+parser.add_argument("-g", help="Show the image in grayscale", action='store_true')
+args = parser.parse_args()
+
 try:
-    main(get_image())
+    main(get_image(args.f, args.u), args.g)
     input()
 except KeyboardInterrupt:
     try:
