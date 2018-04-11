@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ASCIImage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container" id="app">
+            <pre>
+  /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$ /$$$$$$                                            
+ /$$__  $$ /$$__  $$ /$$__  $$|_  $$_/|_  $$_/                                            
+| $$  \ $$| $$  \__/| $$  \__/  | $$    | $$   /$$$$$$/$$$$   /$$$$$$   /$$$$$$   /$$$$$$ 
+| $$$$$$$$|  $$$$$$ | $$        | $$    | $$  | $$_  $$_  $$ |____  $$ /$$__  $$ /$$__  $$
+| $$__  $$ \____  $$| $$        | $$    | $$  | $$ \ $$ \ $$  /$$$$$$$| $$  \ $$| $$$$$$$$
+| $$  | $$ /$$  \ $$| $$    $$  | $$    | $$  | $$ | $$ | $$ /$$__  $$| $$  | $$| $$_____/
+| $$  | $$|  $$$$$$/|  $$$$$$/ /$$$$$$ /$$$$$$| $$ | $$ | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$
+|__/  |__/ \______/  \______/ |______/|______/|__/ |__/ |__/ \_______/ \____  $$ \_______/
+                                                                        /$$  \ $$          
+                                                                        |  $$$$$$/          
+                                                                         \______/           
+            </pre>
+
+            <section class="section">
+                <form action="">
+                    <div class="file has-name is-fullwidth">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="resume">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose a file...
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                {{ message }}
+                            </span>
+                        </label>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
