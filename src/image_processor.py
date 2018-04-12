@@ -9,12 +9,13 @@ from pprint import pprint
 from math import ceil
 
 
-def main(image, is_grayscale):
+def to_ascii(image, screen, options):
     count = 0
-    screen = Screen()
 
     image_height, image_width = image.size
     range_x, range_y = screen.size
+
+    writer = FileWriter(options.to_file())
 
     if image_height > range_x:
         height_ratio = (image_height / range_x)
@@ -41,10 +42,11 @@ def main(image, is_grayscale):
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            sys.stdout.write(str(Char(int(val), rgb[0], is_grayscale)))
+            writer.write(
+                str(Char(int(val), rgb, options.to_grayscale(), options.to_html())))
 
         if x < range_x:
-            sys.stdout.write('\n')
+            writer.cr()
 
 
 def get_medium_color(image):
