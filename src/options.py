@@ -18,8 +18,5 @@ class Options:
     def to_html(self):
         return self.args.w == True
 
-    def to_file(self):
-        return self.args.s or False
-
     def to_grayscale(self):
         return self.args.g == True

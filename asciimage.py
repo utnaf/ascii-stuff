@@ -1,3 +1,11 @@
+#! /usr/bin/env python
+
+__author__    = 'Davide Effe utnaf.dev@gmail.com'
+__version__   = '0.1'
+__license__   = 'WTFPL http://sam.zoy.org/wtfpl/'
+
+#---------------------------------------------------------------------
+
 if __name__ == '__main__':
     import argparse
     import sys
@@ -6,6 +14,7 @@ if __name__ == '__main__':
     from src import get_image
     from src import Screen
     from src import Options
+    from src import FileWriter
 
     parser = argparse.ArgumentParser(
         description="Convert an image into ASCII art")
@@ -17,17 +26,12 @@ if __name__ == '__main__':
         "-g", help="Show the image in grayscale", action='store_true')
     parser.add_argument(
         "-w", help="To HTML", action="store_true")
-    parser.add_argument(
-        "-s", help="Save to file")
 
     args = parser.parse_args()
 
-    try:
-        y, x = os.popen('stty size', 'r').read().split()
-        to_ascii(get_image(args.f, args.u), Screen((x, y)), Options(args))
-        input()
-    except KeyboardInterrupt:
-        try:
-            sys.exit(0)
-        except SystemExit:
-            os._exit(0)
+    y, x = os.popen('stty size', 'r').read().split()
+    options = Options(args)
+    output = to_ascii(get_image(args.f, args.u), Screen((x, y)), options)
+
+    writer = FileWriter(options.to_html()) 
+    writer.write(output)

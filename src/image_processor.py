@@ -15,7 +15,7 @@ def to_ascii(image, screen, options):
     image_height, image_width = image.size
     range_x, range_y = screen.size
 
-    writer = FileWriter(options.to_file())
+    result_string = ''
 
     if image_height > range_x:
         height_ratio = (image_height / range_x)
@@ -42,12 +42,12 @@ def to_ascii(image, screen, options):
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            writer.write(
-                str(Char(int(val), rgb, options.to_grayscale(), options.to_html())))
+            result_string = result_string + str(Char(int(val), rgb, options.to_grayscale(), options.to_html()))
 
         if x < range_x:
-            writer.cr()
+            result_string = result_string + '\n'
 
+    return result_string
 
 def get_medium_color(image):
     count = 1
