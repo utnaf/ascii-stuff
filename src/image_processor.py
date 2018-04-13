@@ -72,12 +72,14 @@ def get_medium_color(image):
     )
 
 
-def get_image(file, url):
+def get_from_file(file):
     infile = file
-    if infile == None:
-        with urllib.request.urlopen(url) as readed_url:
-            infile = io.BytesIO(readed_url.read())
-
     fileobject = Image.open(infile).convert('RGB')
 
     return fileobject
+
+def get_from_url(url):
+    with urllib.request.urlopen(url) as readed_url:
+        return get_from_file(io.BytesIO(readed_url.read()))
+
+    
