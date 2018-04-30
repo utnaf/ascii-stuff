@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 __author__ = 'Davide Effe utnaf.dev@gmail.com'
-__version__ = '0.2b'
+__version__ = '0.2'
 __license__ = 'WTFPL http://sam.zoy.org/wtfpl/'
 
 #---------------------------------------------------------------------
