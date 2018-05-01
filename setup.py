@@ -31,5 +31,5 @@ setup(
         'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3.6',
     ],
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=['asciimage'],
 )

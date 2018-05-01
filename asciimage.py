@@ -1,46 +1,33 @@
 #! /usr/bin/env python
 
-__author__ = 'Davide Effe utnaf.dev@gmail.com'
-__version__ = '0.2'
-__license__ = 'WTFPL http://sam.zoy.org/wtfpl/'
+import asciimage
+import argparse
+import sys
+import os
 
-#---------------------------------------------------------------------
+parser = argparse.ArgumentParser(
+    description="Convert an image into ASCII art")
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument("-l", help="Local file path")
+group.add_argument("-u", help="Remote image url")
 
-from src import to_ascii
-from src import Screen
-from src import Options
-from src import get_from_file
-from src import get_from_url
+parser.add_argument(
+    "-g", help="Show the image in grayscale", action='store_true')
+parser.add_argument(
+    "-s", help="To HTML", action="store_true")
 
-if __name__ == '__main__':
-    import argparse
-    import sys
-    import os
-    from src import FileWriter
+args = parser.parse_args()
 
-    parser = argparse.ArgumentParser(
-        description="Convert an image into ASCII art")
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-l", help="Local file path")
-    group.add_argument("-u", help="Remote image url")
+options = asciimage.Options(args)
 
-    parser.add_argument(
-        "-g", help="Show the image in grayscale", action='store_true')
-    parser.add_argument(
-        "-s", help="To HTML", action="store_true")
+image = None
+if args.l:
+    image = asciimage.get_from_file(args.l)
+else:
+    image = asciimage.get_from_url(args.u)
 
-    args = parser.parse_args()
+y, x = os.popen('stty size', 'r').read().split()
+output = asciimage.to_ascii(image, asciimage.Screen((x, y)), options)
 
-    options = Options(args)
-
-    image = None
-    if args.l:
-        image = get_from_file(args.l)
-    else:
-        image = get_from_url(args.u)
-
-    y, x = os.popen('stty size', 'r').read().split()
-    output = to_ascii(image, Screen((x, y)), options)
-
-    writer = FileWriter(options.to_html())
-    writer.write(output)
+writer = asciimage.FileWriter(options.to_html())
+writer.write(output)
