@@ -3,11 +3,30 @@ from urllib import request
 from PIL import Image, ImageStat
 from math import ceil
 from . import *
+from pprint import pprint
 
-
-def to_ascii(image, screen, greyscale = False, to_html = False):
+def normalize_image(image, max_dims):
+    pixel_size = 5
     image_height, image_width = image.size
-    range_x, range_y = screen.size
+    ratio = image_height / image_width
+
+    if max_dims == None:
+        max_dims = (80, 60)
+
+    if image_height > image_width:
+        new_image_width = int(max_dims[1] * pixel_size)
+        new_image_height = int(new_image_width / ratio)
+    else:
+        new_image_height = int(max_dims[0] * pixel_size)
+        new_image_width = iny(new_image_height / ratio)
+
+    return image.resize((new_image_width, new_image_height), Image.NEAREST)
+
+def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
+    max_dims = (int(max_dims[0]),int(max_dims[1]))
+    image = normalize_image(raw_image, max_dims)
+    image_height, image_width = image.size
+    range_x, range_y = max_dims
 
     result_string = ''
 
