@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 1.1
 Name: asciimage
 Version: 0.2.0
 Summary: Generate ASCII Art from an image
@@ -6,6 +6,7 @@ Home-page: https://github.com/utnaf/asciimage
 Author: Davide Effe
 Author-email: utnaf.dev@gmail.com
 License: UNKNOWN
+Description-Content-Type: text/markdown
 Description: ## ASCIImage
         
         This is an exercise I made to lear some Python. 
@@ -44,6 +45,11 @@ Description: ## ASCIImage
         python asciimage.py -f test.jpg -g
         ```
         
+        ### Save it to an HTML file
+        
+        ```
+        python asciimage.py -f test.jpg -s
+        ```
         
         ### Various
         Feel free to contribute, comment, suggest, cry, smile, or whatever you do when you see something awesome :)
@@ -53,4 +59,3 @@ Description: ## ASCIImage
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: Programming Language :: Python :: 3.6
-Description-Content-Type: text/markdown
