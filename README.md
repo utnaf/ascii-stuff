@@ -36,6 +36,11 @@ python asciimage.py -u https://bit.ly/2Iys8VP
 python asciimage.py -f test.jpg -g
 ```
 
+### Save it to an HTML file
+
+```
+python asciimage.py -f test.jpg -s
+```
 
 ### Various
 Feel free to contribute, comment, suggest, cry, smile, or whatever you do when you see something awesome :)

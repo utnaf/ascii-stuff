@@ -1,17 +1,11 @@
-import time
-import sys
-import io
-import urllib.request
-from src import *
-from PIL import Image
-from PIL import ImageStat
-from pprint import pprint
+from io import BytesIO
+from urllib import request
+from PIL import Image, ImageStat
 from math import ceil
+from . import *
 
 
-def to_ascii(image, screen, options):
-    count = 0
-
+def to_ascii(image, screen, greyscale = False, to_html = False):
     image_height, image_width = image.size
     range_x, range_y = screen.size
 
@@ -42,7 +36,7 @@ def to_ascii(image, screen, options):
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            result_string = result_string + str(Char(int(val), rgb, options.to_grayscale(), options.to_html()))
+            result_string = result_string + str(Char(int(val), rgb, greyscale, to_html))
 
         if x < range_x:
             result_string = result_string + '\n'
@@ -79,7 +73,7 @@ def get_from_file(file):
     return fileobject
 
 def get_from_url(url):
-    with urllib.request.urlopen(url) as readed_url:
+    with request.urlopen(url) as readed_url:
         return get_from_file(io.BytesIO(readed_url.read()))
 
     
