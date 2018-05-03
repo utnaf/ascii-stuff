@@ -11,9 +11,6 @@ def normalize_image(image, max_dims):
     image_height, image_width = image.size
     ratio = image_height / image_width
 
-    if max_dims == None:
-        max_dims = (80, 60)
-
     if image_height > image_width:
         new_image_width = int(max_dims[1] * pixel_size)
         new_image_height = int(new_image_width / ratio)
@@ -24,6 +21,9 @@ def normalize_image(image, max_dims):
     return image.resize((new_image_width, new_image_height), Image.NEAREST)
 
 def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
+    if max_dims == None:
+        max_dims = (80, 60)
+
     max_dims = (int(max_dims[0]),int(max_dims[1]))
     image = normalize_image(raw_image, max_dims)
     image_height, image_width = image.size
