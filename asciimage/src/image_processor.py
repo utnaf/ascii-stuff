@@ -2,7 +2,8 @@ from io import BytesIO
 from urllib import request
 from PIL import Image, ImageStat
 from math import ceil
-from . import *
+from .colortrans import rgb2short
+from .char import Char
 from pprint import pprint
 
 def normalize_image(image, max_dims):
@@ -18,7 +19,7 @@ def normalize_image(image, max_dims):
         new_image_height = int(new_image_width / ratio)
     else:
         new_image_height = int(max_dims[0] * pixel_size)
-        new_image_width = iny(new_image_height / ratio)
+        new_image_width = int(new_image_height / ratio)
 
     return image.resize((new_image_width, new_image_height), Image.NEAREST)
 
