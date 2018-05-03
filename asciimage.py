@@ -26,5 +26,5 @@ else:
 y, x = os.popen('stty size', 'r').read().split()
 output = asciimage.to_ascii(image, (x, y), args.g, args.s)
 
-#writer = asciimage.FileWriter(args.s)
-#writer.write(output)
+writer = asciimage.FileWriter(args.s)
+writer.write(output)
