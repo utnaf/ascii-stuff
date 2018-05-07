@@ -18,6 +18,9 @@ def normalize_image(image, max_dims):
         new_image_height = int(max_dims[0] * pixel_size)
         new_image_width = int(new_image_height / ratio)
 
+    pprint((new_image_width, new_image_height))
+    exit()
+
     return image.resize((new_image_width, new_image_height), Image.NEAREST)
 
 def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):

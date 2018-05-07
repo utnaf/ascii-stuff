@@ -1,6 +1,6 @@
 ## ASCIImage
 
-This is an exercise I made to lear some Python. 
+This is an exercise I made to learn some Python. It's actually my first Py code ever, so bear with me ;)
 
 ## Wat
 
