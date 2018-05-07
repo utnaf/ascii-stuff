@@ -29,7 +29,7 @@ def main():
         y, x = os.popen('stty size', 'r').read().split()
         dims = (x, y)
 
-    output = asciimage.to_ascii(image, dims, args.g, args.s)
+    output = asciimage.to_ascii(image, dims, args.g, args.s, pixel_size=10)
 
     writer = asciimage.FileWriter(args.s)
     writer.write(output)
