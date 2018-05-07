@@ -21,32 +21,22 @@ def normalize_image(image, max_dims, pixel_size):
 
 def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pixel_size=5):
     if max_dims == None:
-        max_dims = (103, 77)
+        max_dims = (200, 150)
 
     max_dims = (int(max_dims[0]),int(max_dims[1]), pixel_size)
     image = normalize_image(raw_image, max_dims)
     raw_image.close()
     image_height, image_width = image.size
-    range_x, range_y = max_dims
 
     result_string = ''
 
-    if image_height > range_x:
-        height_ratio = (image_height / range_x)
-    else:
-        height_ratio = 1
-        range_y = image_height
-
-    if image_width > range_y:
-        width_ratio = (image_width / range_y)
-    else:
-        width_ratio = 1
-        range_y = image_height
+    range_x = int(image_height / pixel_size)
+    range_y = int(image_width / pixel_size)
 
     for y in range(range_y):
         for x in range(range_x):
-            tuple_dim = (int(height_ratio * x), int(width_ratio * y),
-                         int(height_ratio * x + height_ratio), int(width_ratio * y + width_ratio))
+            tuple_dim = (int(pixel_size * x), int(pixel_size * y),
+                         int(pixel_size * x + pixel_size), int(pixel_size * y + pixel_size))
 
             image_square = image.crop(tuple_dim)
 

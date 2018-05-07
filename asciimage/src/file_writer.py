@@ -18,7 +18,7 @@ class FileWriter:
             word-wrap: normal;
             line-height: .75;
             letter-spacing: 0;
-            background: black;
+            background: #aaa;
             text-align: center;
             position: fixed;
             top: 0;
