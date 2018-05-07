@@ -23,8 +23,8 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pix
     if max_dims == None:
         max_dims = (103, 77)
 
-    max_dims = (int(max_dims[0]),int(max_dims[1]), pixel_size)
-    image = normalize_image(raw_image, max_dims)
+    max_dims = (int(max_dims[0]),int(max_dims[1]))
+    image = normalize_image(raw_image, max_dims, pixel_size)
     raw_image.close()
     image_height, image_width = image.size
     range_x, range_y = max_dims
