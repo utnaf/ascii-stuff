@@ -18,9 +18,6 @@ def normalize_image(image, max_dims):
         new_image_height = int(max_dims[0] * pixel_size)
         new_image_width = int(new_image_height / ratio)
 
-    pprint((new_image_width, new_image_height))
-    exit()
-
     return image.resize((new_image_width, new_image_height), Image.NEAREST)
 
 def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
@@ -29,6 +26,7 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
 
     max_dims = (int(max_dims[0]),int(max_dims[1]))
     image = normalize_image(raw_image, max_dims)
+    raw_image.close()
     image_height, image_width = image.size
     range_x, range_y = max_dims
 
@@ -56,6 +54,7 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
             rgb = get_medium_color(image_square)
 
             square_stats = ImageStat.Stat(image_square)
+            image_square.close()
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
@@ -63,6 +62,8 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
 
         if x < range_x:
             result_string = result_string + '\n'
+
+    image.close()
 
     return result_string
 
