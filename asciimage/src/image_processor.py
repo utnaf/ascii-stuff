@@ -6,8 +6,7 @@ from .colortrans import rgb2short
 from .char import Char
 from pprint import pprint
 
-def normalize_image(image, max_dims):
-    pixel_size = 5
+def normalize_image(image, max_dims, pixel_size):
     image_height, image_width = image.size
     ratio = image_height / image_width
 
@@ -20,11 +19,11 @@ def normalize_image(image, max_dims):
 
     return image.resize((new_image_width, new_image_height), Image.NEAREST)
 
-def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False):
+def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pixel_size=5):
     if max_dims == None:
         max_dims = (103, 77)
 
-    max_dims = (int(max_dims[0]),int(max_dims[1]))
+    max_dims = (int(max_dims[0]),int(max_dims[1]), pixel_size)
     image = normalize_image(raw_image, max_dims)
     raw_image.close()
     image_height, image_width = image.size
