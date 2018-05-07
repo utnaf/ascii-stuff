@@ -2,12 +2,32 @@ from io import BytesIO
 from urllib import request
 from PIL import Image, ImageStat
 from math import ceil
-from . import *
+from .colortrans import rgb2short
+from .char import Char
+from pprint import pprint
 
-
-def to_ascii(image, screen, greyscale = False, to_html = False):
+def normalize_image(image, max_dims, pixel_size):
     image_height, image_width = image.size
-    range_x, range_y = screen.size
+    ratio = image_height / image_width
+
+    if image_height > image_width:
+        new_image_width = int(max_dims[1] * pixel_size)
+        new_image_height = int(new_image_width / ratio)
+    else:
+        new_image_height = int(max_dims[0] * pixel_size)
+        new_image_width = int(new_image_height / ratio)
+
+    return image.resize((new_image_width, new_image_height), Image.NEAREST)
+
+def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pixel_size=5):
+    if max_dims == None:
+        max_dims = (103, 77)
+
+    max_dims = (int(max_dims[0]),int(max_dims[1]), pixel_size)
+    image = normalize_image(raw_image, max_dims)
+    raw_image.close()
+    image_height, image_width = image.size
+    range_x, range_y = max_dims
 
     result_string = ''
 
@@ -33,6 +53,7 @@ def to_ascii(image, screen, greyscale = False, to_html = False):
             rgb = get_medium_color(image_square)
 
             square_stats = ImageStat.Stat(image_square)
+            image_square.close()
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
@@ -40,6 +61,8 @@ def to_ascii(image, screen, greyscale = False, to_html = False):
 
         if x < range_x:
             result_string = result_string + '\n'
+
+    image.close()
 
     return result_string
 

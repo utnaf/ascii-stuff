@@ -19,9 +19,9 @@ class Char:
 
     def to_html(self):
         if self._is_greyscale:
-            return '<span style="font-face: mono">' + self.GREYSCALE_CHARS[self._level] + '</span>'
+            return '<span>' + self.GREYSCALE_CHARS[self._level] + '</span>'
         else:
-            return '<span style="font-face: mono; color: #' + self._color[1] + '">' + self.GREYSCALE_CHARS[self._level] + '</span>'
+            return '<span style="color: #' + self._color[1] + '">' + self.GREYSCALE_CHARS[self._level] + '</span>'
 
     def to_shell(self):
         if self._is_greyscale:
