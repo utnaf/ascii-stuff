@@ -23,7 +23,6 @@ setup(
     description='Generate ASCII Art from an image',
 
     long_description=long_description,
-    long_description_content_type='text/markdown',
     url='https://github.com/utnaf/asciimage',
     author='Davide Effe',
     author_email='utnaf.dev@gmail.com',
@@ -32,4 +31,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     packages=['asciimage'],
+    test_suite='nose.collector',
+    tests_require=['nose']
 )

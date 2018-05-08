@@ -1,0 +1,6 @@
+setup.py
+asciimage/__init__.py
+asciimage.egg-info/PKG-INFO
+asciimage.egg-info/SOURCES.txt
+asciimage.egg-info/dependency_links.txt
+asciimage.egg-info/top_level.txt

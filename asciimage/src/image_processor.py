@@ -6,32 +6,39 @@ from .colortrans import rgb2short
 from .char import Char
 from pprint import pprint
 
-def normalize_image(image, max_dims, pixel_size):
-    image_height, image_width = image.size
-    ratio = image_height / image_width
+def decide_dimensions(image_dims, max_dims, pixel_size = 1):
+    image_w, image_h = image_dims
+    max_w, max_h = max_dims
 
-    if image_height > image_width:
-        new_image_width = int(max_dims[1] * pixel_size)
-        new_image_height = int(new_image_width / ratio)
+    image_ratio = image_h / image_w
+
+    if image_w > image_h and image_w > max_w and not max_w * image_ratio > max_h:
+        new_image_w = max_w
+        new_image_h = new_image_w * image_ratio
+    elif image_h > max_h:
+        new_image_h = max_h
+        new_image_w = new_image_h / image_ratio
     else:
-        new_image_height = int(max_dims[0] * pixel_size)
-        new_image_width = int(new_image_height / ratio)
+        new_image_w = image_w
+        new_image_h = image_h
 
-    return image.resize((new_image_width, new_image_height), Image.NEAREST)
+    return (int(new_image_w * pixel_size), int(new_image_h * pixel_size))
+
+def normalize_image(image, max_dims, pixel_size):
+    return image.resize(decide_dimensions(image.size, max_dims, pixel_size), Image.NEAREST)
 
 def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pixel_size=5):
     if max_dims == None:
-        max_dims = (200, 150)
+        max_dims = (100, 100)
 
-    max_dims = (int(max_dims[0]),int(max_dims[1]))
     image = normalize_image(raw_image, max_dims, pixel_size)
     raw_image.close()
-    image_height, image_width = image.size
+    image_width, image_height = image.size
 
     result_string = ''
 
-    range_x = int(image_height / pixel_size)
-    range_y = int(image_width / pixel_size)
+    range_x = int(image_width / pixel_size)
+    range_y = int(image_height / pixel_size)
 
     for y in range(range_y):
         for x in range(range_x):

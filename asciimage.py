@@ -27,7 +27,7 @@ def main():
     dims = None
     if args.s == False:
         y, x = os.popen('stty size', 'r').read().split()
-        dims = (x, y)
+        dims = (int(x), int(y))
 
     output = asciimage.to_ascii(image, dims, args.g, args.s, pixel_size=10)
 
