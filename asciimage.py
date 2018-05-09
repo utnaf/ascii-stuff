@@ -15,7 +15,7 @@ def main():
     parser.add_argument(
         "-g", help="Show the image in grayscale", action='store_true')
     parser.add_argument(
-        "-s", help="To HTML", action="store_true")
+        "-t", help="To terminal", action="store_true")
 
     args = parser.parse_args()
     image = None
@@ -25,13 +25,13 @@ def main():
         image = asciimage.get_from_url(args.u)
 
     dims = None
-    if args.s == False:
+    if args.t == True:
         y, x = os.popen('stty size', 'r').read().split()
         dims = (int(x), int(y))
 
-    output = asciimage.to_ascii(image, dims, args.g, args.s, pixel_size=10)
+    output = asciimage.to_ascii(image, dims, args.g, args.t, pixel_size=10)
 
-    writer = asciimage.FileWriter(args.s)
+    writer = asciimage.FileWriter(args.t)
     writer.write(output)
 
 try:

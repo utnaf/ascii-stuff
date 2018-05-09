@@ -5,17 +5,17 @@ class Char:
     GREYSCALE_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1\{\}[]?-_+~<>i!lI;:,\"^`'. "
     MAX_LEN = len(GREYSCALE_CHARS)
 
-    def __init__(self, level, color, is_greyscale, is_html):
+    def __init__(self, level, color, is_greyscale, is_terminal):
         self._level = level
         self._color = color
         self._is_greyscale = is_greyscale
-        self._is_html = is_html
+        self.is_terminal = is_terminal
 
     def __repr__(self):
-        if self._is_html:
-            return self.to_html()
-        else:
+        if self.is_terminal:
             return self.to_shell()
+        else:
+            return self.to_html()
 
     def to_html(self):
         if self._is_greyscale:

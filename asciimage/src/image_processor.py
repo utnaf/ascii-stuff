@@ -27,7 +27,7 @@ def decide_dimensions(image_dims, max_dims, pixel_size = 1):
 def normalize_image(image, max_dims, pixel_size):
     return image.resize(decide_dimensions(image.size, max_dims, pixel_size), Image.NEAREST)
 
-def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pixel_size=5):
+def to_ascii(raw_image, max_dims = None, greyscale = False, to_terminal = False, pixel_size=5):
     if max_dims == None:
         max_dims = (100, 100)
 
@@ -54,7 +54,7 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_html = False, pix
 
             val = ((square_stats.mean[0] +
                     square_stats.mean[1]) / 2) % Char.MAX_LEN
-            result_string = result_string + str(Char(int(val), rgb, greyscale, to_html))
+            result_string = result_string + str(Char(int(val), rgb, greyscale, to_terminal))
 
         if x < range_x:
             result_string = result_string + '\n'

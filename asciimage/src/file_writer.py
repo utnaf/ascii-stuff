@@ -1,10 +1,9 @@
-import sys
-
+import sys, webbrowser, os
 
 class FileWriter:
-    def __init__(self, file):
+    def __init__(self, shell):
         self._file = None
-        if file == True:
+        if shell == False:
             self._file = open('index.html', 'w')
             self._file.write("""<html>
     <head>
@@ -34,6 +33,7 @@ class FileWriter:
             self._file.write(string)
             self._file.write('</pre></body></html>')
             self._file.close()
+            webbrowser.open('file://' + os.path.realpath('index.html'))
         else:
             sys.stdout.write(string)
             input()
