@@ -14,7 +14,7 @@ class FileWriter:
         pre {
             font-family: monospace;
             font-size: 8px;
-            overflow-x: auto;
+            overflow: hidden;
             white-space: pre;
             word-wrap: normal;
             line-height: .75;
@@ -22,7 +22,6 @@ class FileWriter:
             background: %s;
             display: inline-block;
             margin: 40px auto;
-            padding: 40px;
             border: 10px solid #fff;
             box-shadow: 0 0 1px 0 rgba(0, 0, 0), 0 28px 16px -26px rgba(0, 0, 0);
         }

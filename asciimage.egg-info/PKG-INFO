@@ -1,12 +1,14 @@
 Metadata-Version: 1.1
 Name: asciimage
-Version: 1.2.1
+Version: 1.3.0
 Summary: Generate ASCII Art from an image
-Home-page: https://github.com/utnaf/asciimage
+Home-page: https://asciimage-web.herokuapp.com
 Author: Davide Effe
-Author-email: utnaf.dev@gmail.com
+Author-email: me@dfantuzzi.info
 License: UNKNOWN
-Description: ## ASCIImage
+Description: [![Build Status](https://travis-ci.org/utnaf/asciimage.svg?branch=dev)](https://travis-ci.org/utnaf/asciimage)
+        
+        ## ASCIImage
         
         This is an exercise I made to learn some Python. It's actually my first Py code ever, so bear with me ;)
         
@@ -16,10 +18,14 @@ Description: ## ASCIImage
         
         ## How
         
-        You need [Pillow](https://github.com/python-pillow/Pillow) to run this script, so please make sure to have it installed and then run
-        
+        Install requirements
         ```
-        python asciimage.py -f test.jpg
+        pip install -r requirements.txt
+        ```
+        
+        And run the script with `-t` to print the result on the terminal
+        ```
+        python asciimage.py -t -l test.jpg
         ```
         
         Where test.jpg is this one
@@ -28,26 +34,24 @@ Description: ## ASCIImage
         
         Should return somethin like
         
-        ![result in terminal](https://github.com/utnaf/ascii-stuff/raw/master/result.png)
+        ![result in terminal](https://github.com/utnaf/ascii-stuff/raw/master/docs/asciimage-res1.png)
+        
+        If you run it without `-t` you get an HTML page like this:
+        
+        ![resulting html in browser](https://github.com/utnaf/ascii-stuff/raw/master/docs/asciimage-res2.png)
         
         ## Other options
         
-        ### Use an url as input
+        ### Use an URL as input
         
         ```
         python asciimage.py -u https://bit.ly/2Iys8VP
         ```
         
-        ### Output in grayscale
+        ### Output in _grayscale_
         
         ```
         python asciimage.py -f test.jpg -g
-        ```
-        
-        ### Save it to an HTML file
-        
-        ```
-        python asciimage.py -f test.jpg -s
         ```
         
         ### Various
