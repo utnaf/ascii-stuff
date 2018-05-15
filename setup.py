@@ -19,13 +19,13 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='asciimage',
-    version='1.2.1',
+    version='1.3.0',
     description='Generate ASCII Art from an image',
 
     long_description=long_description,
-    url='https://github.com/utnaf/asciimage',
+    url='https://asciimage-web.herokuapp.com',
     author='Davide Effe',
-    author_email='utnaf.dev@gmail.com',
+    author_email='me@dfantuzzi.info',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3.6',
