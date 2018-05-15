@@ -29,9 +29,9 @@ def main():
         y, x = os.popen('stty size', 'r').read().split()
         dims = (int(x), int(y))
 
-    output = asciimage.to_ascii(image, dims, args.g, args.t, pixel_size=10)
+    output, bg = asciimage.to_ascii(image, dims, args.g, args.t, pixel_size=10)
 
-    writer = asciimage.FileWriter(args.t)
+    writer = asciimage.FileWriter(args.t, bg)
     writer.write(output)
 
 try:

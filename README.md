@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/utnaf/asciimage.svg?branch=dev)](https://travis-ci.org/utnaf/asciimage)
+
 ## ASCIImage
 
 This is an exercise I made to learn some Python. It's actually my first Py code ever, so bear with me ;)
@@ -8,10 +10,14 @@ It takes an image and prints on terminal it's ASCII color art representation.
 
 ## How
 
-You need [Pillow](https://github.com/python-pillow/Pillow) to run this script, so please make sure to have it installed and then run
-
+Install requirements
 ```
-python asciimage.py -f test.jpg
+pip install -r requirements.txt
+```
+
+And run the script
+```
+python asciimage.py -t -l test.jpg
 ```
 
 Where test.jpg is this one
@@ -27,7 +33,7 @@ Should return somethin like
 ### Use an url as input
 
 ```
-python asciimage.py -u https://bit.ly/2Iys8VP
+python asciimage.py -t -u https://bit.ly/2Iys8VP
 ```
 
 ### Output in grayscale

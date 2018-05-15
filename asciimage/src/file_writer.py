@@ -1,32 +1,33 @@
 import sys, webbrowser, os
 
 class FileWriter:
-    def __init__(self, shell):
+    def __init__(self, shell, bg):
         self._file = None
         if shell == False:
             self._file = open('index.html', 'w')
             self._file.write("""<html>
     <head>
         <style>
+        body {
+            text-align: center;
+        }
         pre {
             font-family: monospace;
             font-size: 8px;
             overflow-x: auto;
-            padding: 1.25rem 1.5rem;
             white-space: pre;
             word-wrap: normal;
             line-height: .75;
             letter-spacing: 0;
-            background: #aaa;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;      
+            background: %s;
+            display: inline-block;
+            margin: 40px auto;
+            padding: 40px;
+            border: 10px solid #fff;
+            box-shadow: 0 0 1px 0 rgba(0, 0, 0), 0 28px 16px -26px rgba(0, 0, 0);
         }
     </style>
-</head><body><pre>""")
+</head><body><pre>""" % (bg))
 
     def write(self, string):
         if self._file != None:

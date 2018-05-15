@@ -27,7 +27,10 @@ def decide_dimensions(image_dims, max_dims, pixel_size = 1):
 def normalize_image(image, max_dims, pixel_size):
     return image.resize(decide_dimensions(image.size, max_dims, pixel_size), Image.NEAREST)
 
-def to_ascii(raw_image, max_dims = None, greyscale = False, to_terminal = False, pixel_size=5):
+def suggest_background(image):
+    return "#" + get_medium_color(image)[1]
+
+def to_ascii(raw_image, max_dims = None, greyscale = False, to_terminal = False, pixel_size=5, with_bg=True):
     if max_dims == None:
         max_dims = (100, 100)
 
@@ -59,9 +62,15 @@ def to_ascii(raw_image, max_dims = None, greyscale = False, to_terminal = False,
         if x < range_x:
             result_string = result_string + '\n'
 
+    suggested_background = "#fff"
+    if with_bg:
+        suggested_background = suggest_background(image);
     image.close()
 
-    return result_string
+    return (
+        result_string,
+        suggested_background
+    )
 
 def get_medium_color(image):
     count = 1
@@ -94,6 +103,6 @@ def get_from_file(file):
 
 def get_from_url(url):
     with request.urlopen(url) as readed_url:
-        return get_from_file(io.BytesIO(readed_url.read()))
+        return get_from_file(BytesIO(readed_url.read()))
 
     
