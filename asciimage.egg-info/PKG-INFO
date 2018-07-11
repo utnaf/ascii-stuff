@@ -6,6 +6,7 @@ Home-page: https://asciimage-web.herokuapp.com
 Author: Davide Effe
 Author-email: me@dfantuzzi.info
 License: UNKNOWN
+Description-Content-Type: UNKNOWN
 Description: [![Build Status](https://travis-ci.org/utnaf/asciimage.svg?branch=dev)](https://travis-ci.org/utnaf/asciimage)
         
         ## ASCIImage
