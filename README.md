@@ -25,6 +25,7 @@ python asciimage.py -u https://avatars1.githubusercontent.com/u/1318539?s=460&v=
 ```
 
 Your browser should open and show someting like this:
+
 ![resulting html in browser](https://github.com/utnaf/ascii-stuff/raw/refactor/performance-optimization/docs/asciimage-res.png)
 
 ### Various
