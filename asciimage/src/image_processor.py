@@ -20,6 +20,7 @@ def to_ascii(raw_image, pixel_size=5):
     range_x = int(image_width / pixel_size)
     range_y = int(image_height / pixel_size)
 
+    fg_colors_list = [];
     for y in range(range_y):
         for x in range(range_x):
             tuple_dim = (
@@ -36,7 +37,9 @@ def to_ascii(raw_image, pixel_size=5):
 
             fg_color = "#ffffff"
             if square_colors != None:
-                fg_color = to_html_color(avg_color(square_colors))
+                raw_color = avg_color(square_colors)
+                fg_color = to_html_color(raw_color)
+                fg_colors_list.append((1, raw_color))
 
             result_string = result_string + str(Char(fg_color))
 
@@ -45,7 +48,10 @@ def to_ascii(raw_image, pixel_size=5):
 
     image.close()
 
-    return result_string
+    return (
+        result_string,
+        to_html_color(avg_color(fg_colors_list))
+    )
 
 def avg_color(colors):
     color_sum_r = 0
