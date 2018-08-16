@@ -1,0 +1,9 @@
+- get image
+
+- resize
+
+- get brightness value (need grayscale)
+  - convert brightness to char (or white level)
+- get medium color (need rgb)
+  - convert medium color to rgb
+

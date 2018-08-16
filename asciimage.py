@@ -12,27 +12,17 @@ def main():
     group.add_argument("-l", help="Local file path")
     group.add_argument("-u", help="Remote image url")
 
-    parser.add_argument(
-        "-g", help="Show the image in grayscale", action='store_true')
-    parser.add_argument(
-        "-t", help="To terminal", action="store_true")
-
     args = parser.parse_args()
     image = None
     if args.l:
-        image = asciimage.get_from_file(args.l)
+        image = asciimage.get_from_path(args.l)
     else:
         image = asciimage.get_from_url(args.u)
 
-    dims = None
-    if args.t == True:
-        y, x = os.popen('stty size', 'r').read().split()
-        dims = (int(x), int(y))
+    (output, bg_color) = asciimage.to_ascii(image, pixel_size=5)
 
-    output, bg = asciimage.to_ascii(image, dims, args.g, args.t, pixel_size=10)
-
-    writer = asciimage.FileWriter(args.t, bg)
-    writer.write(output)
+    writer = asciimage.FileWriter()
+    writer.write(output, bg_color)
 
 try:
     main()

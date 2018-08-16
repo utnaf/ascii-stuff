@@ -1,6 +1,6 @@
 import unittest
 from ddt import ddt, data, unpack
-from asciimage import image_processor
+from asciimage import image_dimensions
 
 @ddt
 class TestDecideDimensions(unittest.TestCase):
@@ -35,7 +35,7 @@ class TestDecideDimensions(unittest.TestCase):
         'expected_new_dims': (29,30)
     })
     def test_it_keeps_ratio(self, image_dims, max_dims, expected_new_dims):
-        new_image_dims = image_processor.decide_dimensions(image_dims, max_dims, 1)
+        new_image_dims = image_dimensions.decide_dimensions(image_dims, max_dims, 1)
 
         self.assertEqual(new_image_dims, expected_new_dims)
 
