@@ -11,14 +11,21 @@ It takes an image and prints on terminal it's ASCII color art representation.
 ## How
 
 Install requirements
-```
+```bash
 pip install -r requirements.txt
 ```
-
-And run the script with `-t` to print the result on the terminal
-```
+Run the script
+```bash
 python asciimage.py -l test.jpg
 ```
+
+or use the `-u` option to get the image from the web
+```bash
+python asciimage.py -u https://avatars1.githubusercontent.com/u/1318539?s=460&v=4
+```
+
+Your browser should open and show someting like this:
+![resulting html in browser](https://github.com/utnaf/ascii-stuff/raw/refactor/performance-optimization/docs/asciimage-res1.png)
 
 ### Various
 Feel free to contribute, comment, suggest, cry, smile, or whatever you do when you see something awesome :)
