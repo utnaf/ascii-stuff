@@ -17,33 +17,7 @@ pip install -r requirements.txt
 
 And run the script with `-t` to print the result on the terminal
 ```
-python asciimage.py -t -l test.jpg
-```
-
-Where test.jpg is this one
-
-![c&h](https://github.com/utnaf/ascii-stuff/raw/master/test.jpg)
-
-Should return somethin like
-
-![result in terminal](https://github.com/utnaf/ascii-stuff/raw/master/docs/asciimage-res1.png)
-
-If you run it without `-t` you get an HTML page like this:
-
-![resulting html in browser](https://github.com/utnaf/ascii-stuff/raw/master/docs/asciimage-res2.png)
-
-## Other options
-
-### Use an URL as input
-
-```
-python asciimage.py -u https://bit.ly/2Iys8VP
-```
-
-### Output in _grayscale_
-
-```
-python asciimage.py -f test.jpg -g
+python asciimage.py -l test.jpg
 ```
 
 ### Various

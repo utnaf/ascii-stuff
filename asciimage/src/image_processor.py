@@ -1,20 +1,20 @@
-from PIL import Image, ImageStat
-from math import ceil
-from .colortrans import rgb2short
 from .image_dimensions import normalize_image
 from .char import Char
-from pprint import pprint
-
-def suggest_background(image):
-    return "#" + get_medium_color(image)[1]
 
 def to_ascii(raw_image, pixel_size=5):
+    # pass this as a parameter would be better tho
     max_dims = (120, 120)
 
+    # decide congurent dimension for the input image based on the max_dimensions and the pixel size.
+    # helps avoiding big images
     image = normalize_image(raw_image, max_dims, pixel_size)
+
+    # clean stuff
     raw_image.close()
+
     image_width, image_height = image.size
 
+    # I think printing everything at the end would be better but this is a next step
     result_string = ''
 
     range_x = int(image_width / pixel_size)
@@ -22,10 +22,17 @@ def to_ascii(raw_image, pixel_size=5):
 
     for y in range(range_y):
         for x in range(range_x):
-            tuple_dim = (int(pixel_size * x), int(pixel_size * y),
-                         int(pixel_size * x + pixel_size), int(pixel_size * y + pixel_size))
+            tuple_dim = (
+                int(pixel_size * x), 
+                int(pixel_size * y),
+                int(pixel_size * x + pixel_size), 
+                int(pixel_size * y + pixel_size)
+            )
 
-            square_colors = image.crop(tuple_dim).getcolors(8)
+            # cut a square to be analyzed (this will be our "virtual" pixel),
+            # and get all the colors inside that square.
+            # (number passed is the max num of colors returned)
+            square_colors = image.crop(tuple_dim).getcolors(128)
 
             fg_color = "#ffffff"
             if square_colors != None:

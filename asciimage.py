@@ -19,7 +19,7 @@ def main():
     else:
         image = asciimage.get_from_url(args.u)
 
-    output = asciimage.to_ascii(image, pixel_size=10)
+    output = asciimage.to_ascii(image, pixel_size=5)
 
     writer = asciimage.FileWriter()
     writer.write(output)
