@@ -11,13 +11,13 @@ class FileWriter:
         }
         pre {
             font-family: monospace;
-            font-size: 8px;
+            font-size: 11px;
             overflow: hidden;
             white-space: pre;
             word-wrap: normal;
             line-height: .75;
             letter-spacing: 0;
-            background: #%s;
+            background: %s;
             display: inline-block;
             margin: 40px auto;
             border: 10px solid #fff;

@@ -50,7 +50,7 @@ def to_ascii(raw_image, pixel_size=5):
 
     return (
         result_string,
-        to_html_color(avg_color(fg_colors_list))
+        "#%s" % (to_html_color(avg_color(fg_colors_list)))
     )
 
 def avg_color(colors):
@@ -74,4 +74,4 @@ def avg_color(colors):
     )
 
 def to_html_color(rgb_tuple):
-    return format(rgb_tuple[0], '2x') + format(rgb_tuple[1], '2x') + format(rgb_tuple[2], '2x')
+    return ''.join('%02x'%i for i in rgb_tuple)
